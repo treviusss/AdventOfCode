@@ -5,7 +5,16 @@ class Solution:
 
     @staticmethod
     def is_overlapping(start1: int, end1: int, start2: int, end2: int) -> bool:
-        return start1 <= start2 and end1 >= end2 or start2 <= start1 and end2 >= end1
+        return (
+            start1 <= start2
+            and end1 >= end2
+            or start2 <= start1
+            and end2 >= end1
+            or start1 <= start2
+            and end1 >= start2
+            or start1 >= start2
+            and end2 >= start1
+        )
 
     def process_input(self, file_name: str) -> None:
         with open(file_name, "r") as f:
