@@ -16,4 +16,3 @@ for year, day in itertools.product(YEARS, DAYS):
     with open(pathlib.Path(dest_path + f"/day{day}_input"), "w") as f:
         r = requests.get(URL.format(year, day), cookies=cookies)
         f.write(r.text)
-        f.write(r.text)
