@@ -1,4 +1,4 @@
-import day8_part1 as d8_p1
+import day8_part2 as d8_p2
 
 example_data = """30373
 25512
@@ -7,4 +7,4 @@ example_data = """30373
 35390"""
 
 example_data = example_data.split("\n")
-assert d8_p1.count_visible_trees(example_data) == 21
+print(d8_p2.traverse_trees(example_data))
