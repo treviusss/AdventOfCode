@@ -1,6 +1,6 @@
 import logging
 import re
-from math import floor
+from math import floor, lcm
 from operator import add, mul, pow
 from typing import Any
 
@@ -60,7 +60,7 @@ def parse_input_data(filename: str) -> dict[int, Any]:
 
 
 def monkey_inspect(
-    monkey_data: dict[int, dict[str, Any]], rounds: int = 20
+    monkey_data: dict[int, dict[str, Any]], monkeys_lcm: int, *, rounds: int = 20
 ) -> dict[int, dict[str, Any]]:
     monkey_data = monkey_data
     for _ in range(rounds):
@@ -69,6 +69,7 @@ def monkey_inspect(
             for item in monkey_values["items"][:]:
                 monkey_data[monkey_index]["inspect"] += 1
                 current_item = monkey_values["items"][0]
+                current_item %= monkeys_lcm
                 logging.debug(
                     f"CURRENT {monkey_index=} {monkey_values=} {current_item=}"
                 )
@@ -76,8 +77,7 @@ def monkey_inspect(
                     current_item, monkey_values["operation"][1]
                 )
                 logging.debug(f"AFTER OPERATION {current_item=}")
-                current_item = floor(current_item / WORRY_LEVEL_BORED)
-                logging.debug(f"AFTER DIVISION BY 3 AND ROUNDING {current_item=}")
+                # logging.debug(f"AFTER DIVISION BY 3 AND ROUNDING {current_item=}")
                 if current_item % monkey_values["test"] == 0:
                     dest_monkey = monkey_data[monkey_values["test_true"]]
                     dest_monkey["items"].append(current_item)
@@ -89,9 +89,15 @@ def monkey_inspect(
     return monkey_data
 
 
+def calculate_lcm(monkey_data: dict[int, dict[str, Any]]) -> int:
+    divisors = [value["test"] for value in monkey_data.values()]
+    return lcm(*divisors)
+
+
 def main():
     monkeys = parse_input_data("day11_input")
-    monkeys = monkey_inspect(monkeys)
+    monkeys_lcm = calculate_lcm(monkeys)
+    monkeys = monkey_inspect(monkeys, monkeys_lcm, rounds=10000)
     two_most_active = mul(*sorted(value["inspect"] for value in monkeys.values())[-2:])
     print(two_most_active)
 
