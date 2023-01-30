@@ -1,17 +1,10 @@
 import logging
 from collections import deque
-from typing import Literal
 
 level = logging.INFO
 logging.basicConfig(level=level, format="%(messsage)s")
 
-# EX = """Sabqponm
-# abcryxxl
-# accszExk
-# acctuvwj
-# abdefghi"""
 
-# data = EX.split("\n")
 START_CHAR = "S"
 END_CHAR = "E"
 
@@ -84,7 +77,6 @@ def breadth_first_search(data: list, transformed_data: list):
 
 
 def main():
-    # input_data = get_data("day12_input")
     data = get_data("day12_input")
     number_array = transform_char_into_numbers(data)
     answer = breadth_first_search(data, number_array)
