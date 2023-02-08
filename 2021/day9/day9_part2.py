@@ -4,12 +4,12 @@ from functools import reduce
 DIRECTIONS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
 
-def get_data(filename: str):
+def get_data(filename: str) -> list[list[int]]:
     with open(filename, "r") as f:
         return [[int(digit) for digit in list(number.strip())] for number in f]
 
 
-def find_low_points(data: list):
+def find_low_points(data: list) -> list:
     low_points = []
 
     for row in range(len(data)):
@@ -27,7 +27,7 @@ def find_low_points(data: list):
     return low_points
 
 
-def find_basins_bfs(data: list):
+def find_basins_bfs(data: list) -> list:
     basins = []
     visited = set()
 
@@ -56,7 +56,7 @@ def find_basins_bfs(data: list):
     return basins
 
 
-def find_basins_dfs(data: list):
+def find_basins_dfs(data: list) -> list:
     basins = []
     visited = set()
 

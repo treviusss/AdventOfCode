@@ -1,12 +1,12 @@
 DIRECTIONS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
 
-def get_data(filename: str):
+def get_data(filename: str) -> list[str]:
     with open(filename, "r") as f:
         return f.read().splitlines()
 
 
-def find_low_points(data: list):
+def find_low_points(data: list) -> list:
     low_points = []
 
     for row in range(len(data)):
