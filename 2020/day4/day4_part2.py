@@ -123,7 +123,7 @@ def main() -> None:
         "ecl": ValidateEyeColor(),
         "pid": ValidatePassportID(),
     }
-    data = get_data(r"D:\AdventOfCode\2020\day4\day4_input")
+    data = get_data("day4_input")
     data = parse_data(data)
     print(count_valid_passports(data))
 
