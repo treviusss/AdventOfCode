@@ -20,7 +20,7 @@ def get_data(filename: str) -> list[str]:
         return [line.strip() for line in f]
 
 
-def traverse_forest(data: list, right: int, down: int):
+def traverse_forest(data: list, right: int, down: int) -> int:
     row_len = len(data)
     col_len = len(data[0])
 
